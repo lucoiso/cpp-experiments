@@ -5,7 +5,6 @@
 #include <array>
 #include <barrier>
 #include <coroutine>
-#include <future>
 #include <iostream>
 #include <latch>
 #include <semaphore>
@@ -31,7 +30,7 @@ struct barrier_task {
     std::array<std::jthread, max_threads> works{};
 
     std::barrier work_barrier(std::size(works), []() noexcept {
-      std::cout << "All threads has finished their work." << std::endl;
+      std::cout << "Completion called." << std::endl;
     });
 
     for (auto it = std::begin(works); it != std::end(works); ++it) {
